@@ -42,11 +42,11 @@ const usuariosPost = async (req, res) => {
 };
 const usuariosDelete = async (req, res) => {
   const { id } = req.params;
-  // Borrado en Base de datos
-  // const usuario = await Usuario.findByIdAndDelete(id);
-
+  
   const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
-  res.json(usuario);
+  const usuarioAutenticado = req.usuario;
+
+  res.json({ usuario, usuarioAutenticado });
 };
 
 module.exports = {
